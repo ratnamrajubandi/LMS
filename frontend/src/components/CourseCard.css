@@ -1,0 +1,36 @@
+.coursecard-container{
+    width: 900px;
+    margin: auto;
+    border: 1px solid gray;
+    display: flex;
+    margin-top: 20px;
+}
+
+.coursecard-img-container{
+    width: 250px;
+    height: 150px;
+}
+.coursecard-title-container{
+    width:450px
+}
+.coursecard-button-1{
+    background-color: rgba(66, 41, 205, 0.904);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    height: 40px;
+    width: 120px;
+    border: none;
+
+}
+.coursecard-button-2{
+    background-color:rgb(232, 231, 231);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    height: 40px;
+    width: 120px;
+    border: none;
+}
