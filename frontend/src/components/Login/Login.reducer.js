@@ -9,6 +9,9 @@ const initialState = {
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actions.LOGIN_INITIALIZE: return{
+      ...initialState
+    }
     case actions.LOGIN:
       return {
         ...state,

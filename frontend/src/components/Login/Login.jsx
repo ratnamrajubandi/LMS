@@ -4,7 +4,7 @@ import logo from "../../assets/logo.png";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "./Login.actions";
+import { initializeLogin, login } from "./Login.actions";
 
 const Login = () => {
   const initialValues = { email: "", password: "" };
@@ -16,7 +16,9 @@ const Login = () => {
 
   //DISPATCHING EMAIL AND PASSWORD FROM UI TO STORE
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    dispatch(initializeLogin());
+  }, []);
   const loginUser = () => {
     dispatch(login(formValues.email, formValues.password));
   };

@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const signUpReducer = (state = initialState, action) => {
-  console.log("action: ", action);
   switch (action.type) {
     case actions.SIGNUP:
       return {
