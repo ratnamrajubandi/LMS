@@ -126,9 +126,8 @@ const Login = () => {
           </div>
 
           <div className="mb-3">
-            <Link className="text-decoration-none">
-              <p className="span-text text-left">Forgot Password?</p>
-            </Link>
+            
+              <p className="span-text text-left"><Link to="/forgotpassword" className="text-decoration-none"> <span className="span-text"> Forgot Password </span> </Link></p>
           </div>
           <button
             className="w-100 btn btn-lg button-color"
