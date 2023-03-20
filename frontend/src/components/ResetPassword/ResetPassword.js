@@ -29,6 +29,7 @@ const ResetPassword = () => {
     ev.preventDefault();
     console.log("params: ", params);
     dispatch(resetPassword(formValues.password, params.user, params.token));
+    setFormValues({ ...formValues, password: "" });
   };
 
   return (
@@ -41,15 +42,23 @@ const ResetPassword = () => {
             </p>
             <input
               className="forgot-password-input"
-              type="text"
+              type="password"
               name="password"
               value={formValues.password}
               onChange={handleChange}
             />
+
             <button className="fp-button" type="submit">
               Submit
             </button>
           </form>
+          {resetPasswordResponse === 200 ? (
+            <div className="forgot-password-status-message text-success mt-3 fw-bold">
+              <p>Password Changed Successfully!!!</p>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </div>
