@@ -8,7 +8,8 @@ export default function resetPasswordReducer(state = initialState, action) {
     case actions.RESETPASSWORD:
       return {
         ...state,
-        responseStatus: action.payload,
+        responseStatus: action.payload.status,
+        responseStatusMessage: action.payload.statusMessage,
       };
     default:
       return state;
