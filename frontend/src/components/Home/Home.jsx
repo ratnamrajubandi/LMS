@@ -18,7 +18,9 @@ const Home = () => {
             />
             <h1 className="h3 mb-3 fw-normal mt-3 text-secondary">Welcome</h1>
             <p className="text-muted">Please sign in to your account below</p>
-            <Link to="/login">
+            {/* 
+            <Link to="/login"> */}
+            <Link to="/course">
               <button
                 className="w-75 btn btn-lg button-color mt-5 btn-size"
                 type="submit"

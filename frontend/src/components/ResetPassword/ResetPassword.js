@@ -55,7 +55,7 @@ const ResetPassword = () => {
     <div className="r-container d-flex align-items-center justify-content-center ">
       <div className="reset-password-container">
         <div className="align-items-center">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="form-floating">
             <p className="text-align-center r-pw-text">
               Enter Your New Password
             </p>

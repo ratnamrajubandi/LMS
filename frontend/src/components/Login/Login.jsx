@@ -28,6 +28,7 @@ const Login = () => {
   const email = useSelector((state) => state.email);
   const password = useSelector((state) => state.password);
   const jwt = useSelector((state) => state.login.jwt);
+  const userRole = useSelector((state) => state.login.role);
 
   //FORM HANDLING AND GETTING INPUT DATA FROM USER
   const handleChange = (e) => {
@@ -48,6 +49,9 @@ const Login = () => {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit && jwt) {
       localStorage.setItem("JWT Token", jwt);
+      if (userRole === "admin") {
+        return navigate("/admindashboard");
+      }
       navigate("/yourcourses");
     }
 
@@ -126,8 +130,12 @@ const Login = () => {
           </div>
 
           <div className="mb-3">
-            
-              <p className="span-text text-left"><Link to="/forgotpassword" className="text-decoration-none"> <span className="span-text"> Forgot Password </span> </Link></p>
+            <p className="span-text text-left">
+              <Link to="/forgotpassword" className="text-decoration-none">
+                {" "}
+                <span className="span-text"> Forgot Password </span>{" "}
+              </Link>
+            </p>
           </div>
           <button
             className="w-100 btn btn-lg button-color"

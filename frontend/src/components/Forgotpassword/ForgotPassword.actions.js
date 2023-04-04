@@ -1,8 +1,9 @@
 import actions from "./ForgotPassword.action.types";
+import { url } from "../../utils";
 
 export function forgotPassword(email) {
   return async (dispatch, getState) => {
-    const res = await fetch("http://localhost:4001/user/forgotpassword", {
+    const res = await fetch(`${url}user/forgotpassword`, {
       method: "POST",
       body: JSON.stringify({ email }),
       headers: {

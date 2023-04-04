@@ -2,13 +2,13 @@ const mongoose = require("mongoose");
 
 const courseSchema = new mongoose.Schema(
   {
-    courseID: { type: Number, unique: true },
-    courseName: { type: String },
-    duration: { type: Number },
+    courseID: { type: String, unique: true },
+    courseName: { type: String, required: true },
+    duration: { type: Number, required: true },
     curriculum: {
-      topics: { type: String },
+      type: Array,
     },
-    price: { type: Number },
+    price: { type: Number, required: true },
   },
   { timestamps: true }
 );

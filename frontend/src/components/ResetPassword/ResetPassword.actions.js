@@ -1,7 +1,9 @@
 import actions from "./ResetPassword.action.types";
+import { url } from "../../utils";
+
 export default function resetPassword(password, id, token) {
   return async (dispatch, getState) => {
-    const res = await fetch("http://localhost:4001/user/resetpassword", {
+    const res = await fetch(`${url}user/resetpassword`, {
       method: "POST",
       body: JSON.stringify({ password, id, token }),
       headers: {

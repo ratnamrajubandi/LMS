@@ -1,4 +1,5 @@
 import actions from "./Login.action.types";
+import { url } from "../../utils";
 
 export function login(email, password) {
   return async (dispatch, getState) => {
@@ -7,7 +8,7 @@ export function login(email, password) {
       password,
     });
     try {
-      const res = await fetch("http://localhost:4001/login", {
+      const res = await fetch(`${url}login`, {
         method: "POST",
         body: reqBody,
         headers: {
@@ -23,6 +24,7 @@ export function login(email, password) {
         return;
       }
       const data = await res.json();
+      // console.log("data: ", data);
 
       dispatch({
         type: actions.LOGIN,
@@ -34,10 +36,10 @@ export function login(email, password) {
   };
 }
 
-export function initializeLogin(){
+export function initializeLogin() {
   return async (dispatch, getState) => {
     dispatch({
-      type: actions.LOGIN_INITIALIZE
-    })
-  }
+      type: actions.LOGIN_INITIALIZE,
+    });
+  };
 }

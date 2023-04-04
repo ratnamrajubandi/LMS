@@ -1,4 +1,4 @@
-.login-page.background-img {
+.admincourses-page-background-img {
   background-image: url("../../assets/bg4.jpg");
   background-size: cover;
   width: 100%;
@@ -7,43 +7,55 @@
   align-items: center;
 }
 
-.form-signin {
+.admincourses-form-signin {
   width: 100%;
   max-width: 400px;
   padding: 15px;
   margin: auto;
-
   background-color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.form-signin .checkbox {
+
+
+.cirrculumButton{
+  width: 75px;
+}
+
+/* .admincourses-form-signin .checkbox {
   font-weight: 400;
+} */
+
+.admincourses-form-signin .form-floating:focus-within {
+  z-index: 2;
 }
 
-.form-signin .form-floating:focus-within {
-  /* z-index: 2; */
+
+.adminCourseButton{
+  background-color: rgba(66, 41, 205, 0.904);
+  color: #f5f5f5;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.form-signin input[type="email"] {
+/* .admincourses-form-signin input {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.admincourses-form-signin input {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-.span-text {
+.admincourses-span-text {
   color: rgb(78, 21, 169);
   font-weight: 600;
 }
 
-.button-color {
+.admincourses-button-color {
   background-color: rgba(66, 41, 205, 0.904);
   color: #f5f5f5;
   font-family: Arial, Helvetica, sans-serif;
-}
+} */

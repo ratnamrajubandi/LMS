@@ -9,9 +9,10 @@ const initialState = {
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.LOGIN_INITIALIZE: return{
-      ...initialState
-    }
+    case actions.LOGIN_INITIALIZE:
+      return {
+        ...initialState,
+      };
     case actions.LOGIN:
       return {
         ...state,
@@ -19,6 +20,7 @@ const loginReducer = (state = initialState, action) => {
         password: action.payload.password,
         responseStatus: "",
         jwt: action.payload.token,
+        role: action.payload.role,
       };
     case actions.LOGIN_ERROR:
       return {

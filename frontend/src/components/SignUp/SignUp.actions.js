@@ -1,4 +1,5 @@
 import actions from "./SignUp.actions.types";
+import { url } from "../../utils";
 
 export function Signup(email, password) {
   return async (dispatch, getState) => {
@@ -6,7 +7,7 @@ export function Signup(email, password) {
       email,
       password,
     });
-    const signUpRes = await fetch("http://localhost:4001/signup", {
+    const signUpRes = await fetch(`${url}signup`, {
       method: "POST",
       body: reqBody,
       headers: {
