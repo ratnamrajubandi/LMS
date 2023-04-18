@@ -15,7 +15,9 @@ exports.createCourse = async (course) => {
   return await Course.create(courseToBeInserted);
 };
 exports.getCourseById = async (id) => {
-  return await Course.findById(id);
+  return await Course.find({
+    courseID: id,
+  });
 };
 
 exports.updateCourse = async (id, course) => {
@@ -24,4 +26,18 @@ exports.updateCourse = async (id, course) => {
 
 exports.deleteCourse = async (id) => {
   return await Course.findByIdAndDelete(id);
+};
+
+exports.addCurriculum = async (id, topicName, topicNotes) => {
+  const randomId = nanoid();
+  return await Course.updateOne(
+    {
+      courseID: id,
+    },
+    {
+      $push: {
+        curriculum: { name: topicName, notes: topicNotes, id: randomId },
+      },
+    }
+  );
 };

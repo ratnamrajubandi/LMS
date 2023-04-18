@@ -44,3 +44,17 @@ exports.deleteCourse = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.addCurriculum = async (req, res) => {
+  console.log("req body: ", req.body);
+  try {
+    const course = await courseService.addCurriculum(
+      req.params.id,
+      req.body.topicName,
+      req.body.topicNotes
+    );
+    res.json({ course, status: "success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};

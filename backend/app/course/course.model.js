@@ -5,9 +5,9 @@ const courseSchema = new mongoose.Schema(
     courseID: { type: String, unique: true },
     courseName: { type: String, required: true },
     duration: { type: Number, required: true },
-    curriculum: {
-      type: Array,
-    },
+
+    curriculum: [{ name: String, notes: String, id: String }],
+
     price: { type: Number, required: true },
   },
   { timestamps: true }
