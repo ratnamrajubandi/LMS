@@ -10,7 +10,8 @@ import ForgotPassword from "./components/Forgotpassword/ForgotPassword";
 import ResetPassword from "./components/ResetPassword/ResetPassword";
 import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import AdminCourses from "./components/AdminCourses/AdminCourses";
-import Text from "./components/AdminCourses/Text";
+import ListAdminCourses from "./components/ListAdminCourses/ListAdminCourses";
+import CoursesAccordion from "./components/AdminCourses/CoursesAccordion";
 
 function App() {
   return (
@@ -26,6 +27,11 @@ function App() {
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/course" element={<AdminCourses />} />
+        <Route path="/courselist" element={<ListAdminCourses />} />
+        <Route
+          path="/courselist/courseaccordion/:id"
+          element={<CoursesAccordion />}
+        />
       </Routes>
     </BrowserRouter>
   );

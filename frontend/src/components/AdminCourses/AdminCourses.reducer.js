@@ -6,10 +6,13 @@ const initialState = {
   duration: 0,
   curriculum: [],
   price: 0,
+  courses: {},
 };
 
 const addCoursesReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actions.RESET_COURSE:
+      return initialState;
     case actions.ADDCOURSES:
       return {
         ...state,
@@ -24,6 +27,14 @@ const addCoursesReducer = (state = initialState, action) => {
       return {
         ...state,
         responseStatus: action.payload,
+      };
+    case actions.GET_COURSE:
+      return {
+        ...state,
+        courses: {
+          ...state.courses,
+          [action.payload.courseID]: action.payload,
+        },
       };
     default:
       return state;

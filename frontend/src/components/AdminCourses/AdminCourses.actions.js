@@ -3,6 +3,9 @@ import { url } from "../../utils";
 
 export function addCourses(courseID, courseName, duration, curriculum, price) {
   return async (dispatch, getState) => {
+    dispatch({
+      type: actions.RESET_COURSE,
+    });
     const reqBody = JSON.stringify({
       courseID,
       courseName,
@@ -36,6 +39,52 @@ export function addCourses(courseID, courseName, duration, curriculum, price) {
       });
     } catch (err) {
       console.log("err in adding the course: ", err);
+    }
+  };
+}
+
+export function getCourseByCourseId(courseId) {
+  return async (dispatch, getState) => {
+    const res = await fetch(`${url}course/${courseId}`);
+    if (!res.ok) {
+      dispatch({
+        type: actions.GET_COURSE_ERROR,
+        payload: res.status,
+      });
+      return;
+    }
+
+    const course = await res.json();
+    console.log("course in fetch: ", course);
+    dispatch({
+      type: actions.GET_COURSE,
+      payload: course?.data?.[0] || {},
+    });
+  };
+}
+
+export function addCurriculum(courseId, topicName, topicNotes) {
+  return async (dispatch, getState) => {
+    try {
+      const res = await fetch(`${url}course/${courseId}/curriculum`, {
+        method: "POST",
+        body: JSON.stringify({
+          topicName,
+          topicNotes,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!res.ok) {
+        console.log("invalid res: ", res);
+      }
+
+      const data = await res.json();
+      console.log("data after insert curicullum: ", data);
+      dispatch(getCourseByCourseId(courseId));
+    } catch (err) {
+      console.log("err: ", err);
     }
   };
 }

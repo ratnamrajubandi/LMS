@@ -3,7 +3,7 @@ import logo from "../../assets/logo.png";
 
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate, Link } from "react-router-dom";
 import { addCourses } from "./AdminCourses.actions";
 import { useEffect } from "react";
 
@@ -95,10 +95,9 @@ const AdminCourses = () => {
       setErrorMessage("Invalid Request");
     }
     if (responseStatus === 200) {
-      setTopicIds(["topicId0"]);
       setErrorMessage("");
 
-      setFormValues({ ...initialValues, curriculum: { topicId0: "" } });
+      setFormValues({ ...initialValues, curriculum: [] });
     }
   }, [responseStatus]);
 
@@ -151,7 +150,7 @@ const AdminCourses = () => {
             width={200}
             height={70}
           />
-          <h1 className="h3 mb-3 fw-normal text-secondary">Welcome</h1>
+          {/* <h1 className="h3 mb-3 fw-normal text-secondary">Welcome</h1> */}
 
           {errorMessage ? (
             <div className="text-danger">Invalid Request !!</div>
@@ -190,8 +189,10 @@ const AdminCourses = () => {
 
             <label for="courseDuration">Add Course Duration</label>
           </div>
-          <p className="text-start mt-2 fw-bold">Course Currculum</p>
-          {topicIds.map((topicId) => (
+          {/* <Link to="/courselist/courseaccordion">
+            <p className="text-start mt-2 fw-bold">Course Currculum</p>
+          </Link> */}
+          {/* {topicIds.map((topicId) => (
             <div className="form-floating mt-2 cirrculumInput d-flex">
               <input
                 type="text"
@@ -204,12 +205,12 @@ const AdminCourses = () => {
                 onChange={handleChange}
               />
 
-              <label for="addCurrculum">Add Course</label>
+              <label for="addCurrculum">Add Topic</label>
               <button className="cirrculumButton" onClick={handleTopicAdd}>
                 +
               </button>
             </div>
-          ))}
+          ))} */}
           <p className="text-warning">{formErrors.price}</p>
           <div className="form-floating mt-2">
             <input
@@ -226,12 +227,14 @@ const AdminCourses = () => {
           </div>
 
           <button
-            className="adminCourseButton btn btn-primary mt-2"
+            className="adminCourseButton btn btn-primary mt-3"
             type="submit"
           >
             Submit
           </button>
-          
+          <Link className="text-decoration-none" to="/admindashboard">
+            <p className="mt-3">Return to Dashboard</p>
+          </Link>
         </form>
       </main>
     </div>

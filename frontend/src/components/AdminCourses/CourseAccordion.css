@@ -1,0 +1,29 @@
+.curriculum-header {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* color: red; */
+  font-weight: bold;
+}
+
+.accordion-item {
+  border: 2px solid green;
+  /* background-color: aquamarine; */
+  color: white;
+}
+.accordion-item:nth-of-type(n) .accordion-button {
+  color: green;
+  font-weight: 700;
+  font-size: 19px;
+  border: 1px solid white;
+}
+.outlined-icon{
+  /* color: red; */
+  font-size: 25px;
+  font-weight:bolder;
+}
+/* 
+.accordion-button::after{
+  background-image: url("https://www.clipartmax.com/png/small/121-1212430_white-edit-11-icon-edit-icon-bootstrap-png.png");
+} */
