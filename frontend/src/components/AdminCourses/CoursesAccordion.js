@@ -6,7 +6,7 @@ import { addCurriculum, getCourseByCourseId } from "./AdminCourses.actions";
 import Button from "react-bootstrap/Button";
 import CreateCurriculumModal from "./CreateCurriculumModal";
 import Accordion from "react-bootstrap/Accordion";
-import { DoubleRightOutlined } from '@ant-design/icons';
+import { DoubleRightOutlined } from "@ant-design/icons";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 const CoursesAccordion = () => {
@@ -61,8 +61,17 @@ const CoursesAccordion = () => {
               eventKey={`${index}`}
               key={curriculum.id}
             >
-              <Accordion.Header>{<DoubleRightOutlined className="outlined-icon" />}  { `   ${curriculum.name}`} </Accordion.Header>
-              {/* {<EditOutlined className="d-flex align-right" />} {<DeleteOutlined className="d-flex flex-direction-row text-right"/>} */}
+              <Accordion.Header>
+                {<DoubleRightOutlined className="outlined-icon" />}{" "}
+                {`   ${curriculum.name}`}{" "}
+                {
+                  <EditOutlined className="d-flex align-right edit-outline-icon" />
+                }{" "}
+                {
+                  <DeleteOutlined className="d-flex flex-direction-row text-right delete-outline-icon" />
+                }
+              </Accordion.Header>
+
               <Accordion.Body>{curriculum.notes}</Accordion.Body>
             </Accordion.Item>
           ))}

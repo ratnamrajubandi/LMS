@@ -4,6 +4,7 @@ import forgotPasswordReducer from "../components/Forgotpassword/ForgotPassword.r
 import loginReducer from "../components/Login/Login.reducer";
 import resetPasswordReducer from "../components/ResetPassword/ResetPassword.reducer";
 import signUpReducer from "../components/SignUp/SignUp.reducer";
+import listAdminCoursesReducer from "../components/ListAdminCourses/ListAdminCourses.reducer";
 
 export default combineReducers({
   login: loginReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   forgotPassword: forgotPasswordReducer,
   resetPassword: resetPasswordReducer,
   addCourses: addCoursesReducer,
+  adminCourses: listAdminCoursesReducer,
 });

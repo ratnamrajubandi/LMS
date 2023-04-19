@@ -5,25 +5,36 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import { Link } from "react-router-dom";
 import { url } from "../../utils";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteAdminCourse,
+  listAdminCourses,
+  updateCourse,
+} from "./ListAdminCourses.actions";
+import AdminCoursesEditModal from "./AdminCoursesEditModal";
 
 const ListAdminCourses = () => {
   const [data, setData] = useState([]);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState({});
+  const dispatch = useDispatch();
 
-  const handleEdit = ()=>{
+  const adminCourses = useSelector((state) => state.adminCourses.courses);
 
-  }
+  console.log("adminCourses: ", adminCourses);
 
-  const handleDelete = ()=>{
-    
-  }
+  const handleEdit = (course) => {
+    setSelectedCourse(course);
+    setShowEditModal(true);
+  };
+
+  const handleDelete = (id) => {
+    console.log("in handle delete: ", id);
+    dispatch(deleteAdminCourse(id));
+  };
 
   useEffect(() => {
-    fetch(`${url}course`).then(async (response) => {
-      const responseData = await response.json();
-      console.log("data: ", data);
-
-      setData(responseData?.data || []);
-    });
+    dispatch(listAdminCourses());
   }, []);
 
   data.map((c) => {
@@ -33,12 +44,25 @@ const ListAdminCourses = () => {
   return (
     <div className="list-admin-courses-container">
       <div className="container">
+        {showEditModal && (
+          <AdminCoursesEditModal
+            show={showEditModal}
+            handleClose={() => {
+              setShowEditModal(false);
+            }}
+            course={selectedCourse}
+            handleSave={(formValues) => {
+              const { id, ...rest } = formValues;
+              dispatch(updateCourse(formValues.id, rest));
+              setShowEditModal(false);
+            }}
+          />
+        )}
         <h1 className="courselist-heading text-center mt-0 pt-5">
           Courses List
         </h1>
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-          {data.map((course) => {
-            console.log("course: ", course);
+          {adminCourses?.map((course) => {
             return (
               <div className="m-4">
                 <div
@@ -62,12 +86,20 @@ const ListAdminCourses = () => {
                       <p className="card-text">{`${course.duration} hours`}</p>
                     </div>
                     <div className="courseMargin  mb-3 pb-3">
-                      <p className="card-text">{`Rs.${course.duration}/-`}</p>
+                      <p className="card-text">{`Rs.${course.price}/-`}</p>
                     </div>
                     <div className="d-flex justify-content-sm-between">
-                      <EditOutlined className="btn" onClick={handleEdit} />
+                      <EditOutlined
+                        className="btn"
+                        onClick={() => handleEdit(course)}
+                      />
                       <button>Assign</button>
-                      <DeleteOutlined className="btn" onClick={handleDelete} />
+                      <DeleteOutlined
+                        className="btn"
+                        onClick={() => {
+                          handleDelete(course["_id"]);
+                        }}
+                      />
                     </div>
                   </div>
                 </div>

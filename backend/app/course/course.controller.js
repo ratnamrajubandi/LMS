@@ -29,6 +29,7 @@ exports.getCourseById = async (req, res) => {
 
 exports.updateCourse = async (req, res) => {
   try {
+    console.log("req.params.id, req.body: ", req.params.id, req.body);
     const course = await courseService.updateCourse(req.params.id, req.body);
     res.json({ data: course, status: "success" });
   } catch (err) {

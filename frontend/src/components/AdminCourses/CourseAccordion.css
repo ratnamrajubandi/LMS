@@ -18,12 +18,21 @@
   font-size: 19px;
   border: 1px solid white;
 }
-.outlined-icon{
+.outlined-icon {
   /* color: red; */
   font-size: 25px;
-  font-weight:bolder;
+  font-weight: bolder;
 }
-/* 
-.accordion-button::after{
-  background-image: url("https://www.clipartmax.com/png/small/121-1212430_white-edit-11-icon-edit-icon-bootstrap-png.png");
-} */
+
+.accordion-button::after {
+  margin-left: initial;
+}
+
+.edit-outline-icon {
+  margin-left: auto;
+  margin-right: 8px;
+}
+
+.delete-outline-icon {
+  margin-right: 24px;
+}
