@@ -81,3 +81,12 @@ body {
 /* .btn-size{
   margin:100px
 } */
+
+.admin-logout {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  margin-right: 150px;
+  margin-bottom: 0px;
+}

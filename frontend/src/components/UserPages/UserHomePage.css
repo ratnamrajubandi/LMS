@@ -1,0 +1,41 @@
+.user-home-container {
+  background-image: url("../../assets/bg5.jpg");
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+}
+.user-heading {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.user-homepage-heading{
+  font-weight:900;
+}
+.user-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-logout{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-right: 50px; */
+}
+/* .signout-button{
+  margin-left: 100px;
+  margin-right: 50px;
+} */
+
+.logout{
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  margin-right: 150px;
+  margin-bottom: 0px;
+  /* margin-top: 20px; */
+}

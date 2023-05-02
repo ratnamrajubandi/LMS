@@ -2,14 +2,21 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
+import RichTextEditor from "./RichTextEditor";
 
 export default function CreateCurriculumModal({
   show,
   handleClose,
   handleSave,
+  edit,
+  curriculum,
 }) {
-  const [topicName, setTopicName] = useState("");
-  const [topicNotes, setTopicNotes] = useState("");
+  const [topicName, setTopicName] = useState(
+    edit && curriculum ? curriculum.name : ""
+  );
+  const [topicNotes, setTopicNotes] = useState(
+    edit && curriculum ? curriculum.notes : ""
+  );
 
   return (
     <Modal show={show} onHide={handleClose} backdrop="static">
@@ -27,9 +34,10 @@ export default function CreateCurriculumModal({
               onChange={(ev) => {
                 setTopicName(ev.target.value);
               }}
+              defaultValue={edit && curriculum ? curriculum.name : ""}
             />
           </Form.Group>
-          <Form.Group
+          {/* <Form.Group
             className="mb-3"
             controlId="exampleForm.ControlTextarea1"
             onChange={(ev) => {
@@ -37,10 +45,20 @@ export default function CreateCurriculumModal({
             }}
           >
             <Form.Label>Topic Notes</Form.Label>
-            <Form.Control as="textarea" rows={10} />
-          </Form.Group>
+
+            <Form.Control
+              // as="textarea"
+              as={"RichTextEditor"}
+            />
+          </Form.Group> */}
+          <label>Topic Notes</label>
+          <RichTextEditor
+            onBlur={(content) => setTopicNotes(content)}
+            value={topicNotes}
+          />
         </Form>
       </Modal.Body>
+
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           Close

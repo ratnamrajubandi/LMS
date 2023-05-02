@@ -1,0 +1,7 @@
+.suuccess-container {
+  background-image: url("../../assets/bg2.jpg");
+  background-size: cover;
+  /* background-position: right; */
+  width: 100%;
+  height: 100vh;
+}

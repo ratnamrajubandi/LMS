@@ -1,15 +1,19 @@
 import React from "react";
 import "./AdminDashboard.css";
 import logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { LoginOutlined } from "@ant-design/icons";
 
 const AdminDashboard = () => {
-  // const state = useSelector((state) => {
-  //   state;
-  // });
-
   const email = useSelector((state) => state.login.email);
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    console.log("Logged Out");
+    localStorage.removeItem("JWT Token");
+    navigate("/login");
+  };
 
   return (
     <div className="d-flex home">
@@ -46,7 +50,15 @@ const AdminDashboard = () => {
           </form>
         </main>
       </div>
-      <div className="background-img"></div>
+      <div className="background-img">
+        <div className="admin-logout">
+          <LoginOutlined
+            className="mt-4 btn btn-primary  signout-button"
+            onClick={handleLogout}
+          />
+          <p className="text-align-center">Logout</p>
+        </div>
+      </div>
     </div>
   );
 };

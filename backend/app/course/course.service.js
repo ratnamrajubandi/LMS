@@ -41,3 +41,35 @@ exports.addCurriculum = async (id, topicName, topicNotes) => {
     }
   );
 };
+
+exports.updateCurriculum = async (
+  courseId,
+  topicName,
+  topicNotes,
+  curriculumId
+) => {
+  const updateCondition = {
+    courseID: courseId,
+    "curriculum.id": curriculumId,
+  };
+
+  const updateQuery = {
+    $set: {
+      "curriculum.$.name": topicName,
+      "curriculum.$.notes": topicNotes,
+    },
+  };
+  return await Course.updateOne(updateCondition, updateQuery);
+};
+
+exports.deleteCurriculum = async (courseId, curriculumId) => {
+  const whereCondition = {
+    courseID: courseId,
+  };
+
+  const deleteQuery = {
+    $pull: { curriculum: { id: curriculumId } },
+  };
+
+  return await Course.updateOne(whereCondition, deleteQuery);
+};

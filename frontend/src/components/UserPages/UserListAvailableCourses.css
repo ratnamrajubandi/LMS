@@ -1,0 +1,43 @@
+.user-available-courses-container {
+    background-image: url("../../assets/bg5.jpg");
+    background-size: cover;
+   height: 100vh;
+    width: 100%;
+    
+    align-items: center;
+  
+  }
+
+  .card-style{
+    border-radius: 20px;
+  }
+  
+  .user-courseMargin {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+  }
+  .user-button-bottom {
+    margin-bottom: 4px;
+    margin-left: 35px;
+  }
+  
+  .user-courselist-heading {
+    font-weight: 900;
+    color: black;
+  }
+  .card-button{
+   margin: auto;
+   margin-bottom: 15px;
+   /* color: red; */
+  }
+
+  .card-button-styles{
+    border-radius: 20px;
+  }
+
+  .user-courses-return{
+    font-weight: 800;
+    /* color: white; */
+    margin-top: 100px;
+  }
+  

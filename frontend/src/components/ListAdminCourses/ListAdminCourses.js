@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./ListAdminCourses.css";
 import logo from "../../assets/logo.png";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, LoginOutlined } from "@ant-design/icons";
+
 
 import { Link } from "react-router-dom";
 import { url } from "../../utils";
@@ -37,9 +38,9 @@ const ListAdminCourses = () => {
     dispatch(listAdminCourses());
   }, []);
 
-  data.map((c) => {
-    console.log(c.curriculum);
-  });
+  // data.map((c) => {
+  //   console.log(c.curriculum);
+  // });
 
   return (
     <div className="list-admin-courses-container">
@@ -58,6 +59,10 @@ const ListAdminCourses = () => {
             }}
           />
         )}
+        <div className="logout">
+          <LoginOutlined className="mt-4 btn btn-primary  signout-button" />
+          <p className="text-align-center">Logout</p>
+        </div>
         <h1 className="courselist-heading text-center mt-0 pt-5">
           Courses List
         </h1>
@@ -66,7 +71,7 @@ const ListAdminCourses = () => {
             return (
               <div className="m-4">
                 <div
-                  className="card text-black  mb-3 mx-auto mt-4 text-start"
+                  className="card text-black  mb-3 mx-auto mt-4 text-start admin-card-style"
                   style={{ maxWidth: "18rem" }}
                   key={course.courseID}
                 >

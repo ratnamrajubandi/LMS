@@ -49,10 +49,16 @@ const Login = () => {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit && jwt) {
       localStorage.setItem("JWT Token", jwt);
+
+      const COOKIE_NAME = "testCookie";
+      document.cookie = `${COOKIE_NAME}=${jwt}`;
+
       if (userRole === "admin") {
+        // window.cookies.set("cook", jwt);
         return navigate("/admindashboard");
       }
-      navigate("/yourcourses");
+      // window.cookies.set("cook", jwt);
+      navigate("/userhomepage");
     }
 
     if (responseStatus === 400) {

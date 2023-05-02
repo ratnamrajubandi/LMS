@@ -12,6 +12,9 @@ import AdminDashboard from "./components/AdminDashboard/AdminDashboard";
 import AdminCourses from "./components/AdminCourses/AdminCourses";
 import ListAdminCourses from "./components/ListAdminCourses/ListAdminCourses";
 import CoursesAccordion from "./components/AdminCourses/CoursesAccordion";
+import UserHomePage from "./components/UserPages/UserHomePage";
+import UserListAvailableCourses from "./components/UserPages/UserListAvailableCourses";
+import PaymentSuccess from "./components/Payments/PaymentSuccess";
 
 function App() {
   return (
@@ -24,6 +27,7 @@ function App() {
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/yourcourses" element={<YourCourses />} />
+        <Route path="/userhomepage" element={<UserHomePage />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/course" element={<AdminCourses />} />
@@ -32,6 +36,11 @@ function App() {
           path="/courselist/courseaccordion/:id"
           element={<CoursesAccordion />}
         />
+        <Route
+          path="/listavailablecourses"
+          element={<UserListAvailableCourses />}
+        />
+        <Route path="/paymentsuccess" element={<PaymentSuccess />} />
       </Routes>
     </BrowserRouter>
   );

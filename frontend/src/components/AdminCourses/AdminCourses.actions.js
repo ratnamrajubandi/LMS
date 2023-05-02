@@ -89,6 +89,62 @@ export function addCurriculum(courseId, topicName, topicNotes) {
   };
 }
 
+export function updateCurriculum(
+  courseId,
+  topicName,
+  topicNotes,
+  curriculumId
+) {
+  return async (dispatch, getState) => {
+    try {
+      const res = await fetch(
+        `${url}course/${courseId}/curriculum/${curriculumId}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            topicName,
+            topicNotes,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!res.ok) {
+        console.log("invalid res: ", res);
+      }
+
+      const data = await res.json();
+      console.log("data after update curicullum: ", data);
+      dispatch(getCourseByCourseId(courseId));
+    } catch (err) {
+      console.log("err: ", err);
+    }
+  };
+}
+
+export function deleteCurriculum(courseId, curriculumId) {
+  return async (dispatch, getState) => {
+    try {
+      const res = await fetch(
+        `${url}course/${courseId}/curriculum/${curriculumId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!res.ok) {
+        console.log("invalid res: ", res);
+      }
+
+      const data = await res.json();
+      console.log("data after delete curicullum: ", data);
+      dispatch(getCourseByCourseId(courseId));
+    } catch (err) {
+      console.log("err: ", err);
+    }
+  };
+}
+
 // export function initializeLogin() {
 //   return async (dispatch, getState) => {
 //     dispatch({

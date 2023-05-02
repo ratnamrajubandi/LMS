@@ -33,3 +33,14 @@
   font-weight: 900;
   color: black;
 }
+.admin-card-style {
+  border-radius: 20px;
+}
+.admin-logout {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  margin-right: 150px;
+  margin-bottom: 0px;
+}

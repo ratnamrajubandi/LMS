@@ -29,7 +29,6 @@ exports.getCourseById = async (req, res) => {
 
 exports.updateCourse = async (req, res) => {
   try {
-    console.log("req.params.id, req.body: ", req.params.id, req.body);
     const course = await courseService.updateCourse(req.params.id, req.body);
     res.json({ data: course, status: "success" });
   } catch (err) {
@@ -47,7 +46,6 @@ exports.deleteCourse = async (req, res) => {
 };
 
 exports.addCurriculum = async (req, res) => {
-  console.log("req body: ", req.body);
   try {
     const course = await courseService.addCurriculum(
       req.params.id,
@@ -55,6 +53,34 @@ exports.addCurriculum = async (req, res) => {
       req.body.topicNotes
     );
     res.json({ course, status: "success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.updateCurriculum = async (req, res) => {
+  try {
+    const courseId = req.params.courseId;
+    const curriculumId = req.params.curriculumId;
+    const result = await courseService.updateCurriculum(
+      courseId,
+      req.body.topicName,
+      req.body.topicNotes,
+      curriculumId
+    );
+
+    res.json({ result, status: "success" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.deleteCurriculum = async (req, res) => {
+  try {
+    const courseId = req.params.courseId;
+    const curriculumId = req.params.curriculumId;
+    const result = await courseService.deleteCurriculum(courseId, curriculumId);
+    res.json({ result, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

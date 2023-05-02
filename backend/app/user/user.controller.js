@@ -1,7 +1,6 @@
 const userService = require("./user.service");
 
 async function forgotPassword(req, res) {
-  console.log("in forgot password");
   try {
     const { email } = req.body;
     if (!email) {
@@ -11,7 +10,6 @@ async function forgotPassword(req, res) {
     // check if user already exist
     // Validate if user exist in our database
     const oldUser = await userService.getUserByEmail(email);
-    console.log("old user: ", oldUser);
 
     if (!oldUser) {
       return res.status(404).send("Email is not registered");
@@ -21,7 +19,6 @@ async function forgotPassword(req, res) {
 
     return res.status(200).send("Reset link sent successfully");
   } catch (err) {
-    console.log("err: ", err);
     return res
       .status(500)
       .send("Error in reseting your password. Please try later");
@@ -30,7 +27,6 @@ async function forgotPassword(req, res) {
 
 async function resetPassword(req, res) {
   const { id, token, password } = req.body;
-  console.log("req.body: ", req.body);
 
   if (!token || !id) {
     return res.status(400).send("Invalid token or id");
@@ -41,7 +37,6 @@ async function resetPassword(req, res) {
   }
 
   const user = await userService.getUserById(id);
-  console.log("user: ", user);
 
   if (!user) {
     return res.status(400).send("User not found");
@@ -51,10 +46,6 @@ async function resetPassword(req, res) {
     return res.status(400).send("Token not found");
   }
 
-  console.log(
-    "check password: ",
-    await userService.checkUserPassword(user.email, password)
-  );
   if (await userService.checkUserPassword(user.email, password)) {
     return res
       .status(400)
