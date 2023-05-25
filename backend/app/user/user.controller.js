@@ -60,7 +60,17 @@ async function resetPassword(req, res) {
   return res.status(200).send("successfully reset password");
 }
 
+async function toggleUserRole(req, res) {
+  console.log("body in toggle user role: ", req.body);
+  if (req.body.userId) {
+    await userService.toggleUserRoleByEmail(req.body.userId);
+  }
+
+  return res.status(200).json({ data: "success" });
+}
+
 module.exports = {
   forgotPassword,
   resetPassword,
+  toggleUserRole,
 };

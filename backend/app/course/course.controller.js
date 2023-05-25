@@ -85,3 +85,13 @@ exports.deleteCurriculum = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+/////////////
+// exports.getUserOrderedCourses = async (req, res) => {
+//   try {
+//     const orderedcourse = await courseService.getUserOrderedCourses(req.params.email);
+//     res.json({ data: orderedcourse, status: "success" });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
+//////////////////////

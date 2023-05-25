@@ -8,6 +8,7 @@ const {
   addCurriculum,
   updateCurriculum,
   deleteCurriculum,
+  // getUserOrderedCourses
 } = require("./course.controller");
 
 const router = express.Router();
@@ -19,5 +20,9 @@ router
   .route("/:courseId/curriculum/:curriculumId")
   .patch(updateCurriculum)
   .delete(deleteCurriculum);
+
+  //
+  // router.route("/:email").get(getUserOrderedCourses);
+  //
 
 module.exports = router;

@@ -5,11 +5,11 @@ const utils = require("../../utils");
 const crypto = require("crypto");
 
 async function getUserByEmail(email) {
-  return await User.findOne({ email });
+  return await User.findOne({ email }).populate("purchasedCourses");
 }
 
 async function getUserById(id) {
-  return await User.findById(id);
+  return await User.findById(id).populate("purchasedCourses");
 }
 
 async function checkUserPassword(email, password) {
@@ -25,6 +25,7 @@ async function createJwtToken(email) {
   if (!user) {
     return false;
   }
+  console.log("user in createjwttoken: ", user);
   // Create token
   const token = jwt.sign({ user_id: user._id, email }, process.env.TOKEN_KEY, {
     expiresIn: "5h",
@@ -61,7 +62,6 @@ async function sendPasswordResetLink(email) {
   const salt = await bcrypt.genSalt(10);
   const hashedResetToken = await bcrypt.hash(resetToken, salt);
   const oldUser = await getUserByEmail(email);
-  
 
   await User.updateOne({ email }, { resettoken: hashedResetToken });
   const resetLink = `http://localhost:3000/resetpassword?token=${resetToken}&user=${oldUser.id}`;
@@ -101,6 +101,15 @@ async function validateResetToken(id, token) {
   return await bcrypt.compare(token, user.resettoken);
 }
 
+async function toggleUserRoleByEmail(email) {
+  const user = await User.findOne({ email });
+  let roleToBeUpdated = "user";
+  if (user.role === "user") {
+    roleToBeUpdated = "admin";
+  }
+  await User.updateOne({ email }, { role: roleToBeUpdated });
+}
+
 module.exports = {
   getUserByEmail,
   getUserById,
@@ -110,4 +119,5 @@ module.exports = {
   sendPasswordResetLink,
   resetPassword,
   validateResetToken,
+  toggleUserRoleByEmail,
 };

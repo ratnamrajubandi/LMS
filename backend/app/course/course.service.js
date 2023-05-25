@@ -1,4 +1,5 @@
 const Course = require("./course.model");
+// const CourseOrder = require("../user/userOrderModel");
 const { nanoid } = require("nanoid");
 
 exports.getAllCourses = async () => {
@@ -41,6 +42,14 @@ exports.addCurriculum = async (id, topicName, topicNotes) => {
     }
   );
 };
+
+////////////
+// exports.getUserOrderedCourses = async (email) => {
+//   return await CourseOrder.find({
+//     email: email,
+//   });
+// };
+////////////
 
 exports.updateCurriculum = async (
   courseId,

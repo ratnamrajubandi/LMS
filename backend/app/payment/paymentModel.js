@@ -13,6 +13,11 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+/////////////
+  razorpay_user_id: {
+    type: String,
+  },
+  
 });
 
 module.exports = mongoose.model("Payment", paymentSchema);
