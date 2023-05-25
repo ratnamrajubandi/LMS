@@ -34,7 +34,7 @@ const AdminCourses = () => {
 
   // ------------------------------------------------------------------------
 
-  // GETTING STORE FROM STORE
+  // GETTING ROLE FROM STORE
   const userRole = useSelector((state) => state.login.role);
   console.log("userRole: ", userRole);
 
@@ -105,7 +105,8 @@ const AdminCourses = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   console.log("before  if");
-  if (userRole !== "admin") {
+  console.log("userrole in admin courses: ", userRole);
+  if (!["superadmin", "admin"].includes(userRole)) {
     console.log("before  navigate");
     // navigate("/login");
     return <Navigate to="/login" replace={true} />;
@@ -232,9 +233,15 @@ const AdminCourses = () => {
           >
             Submit
           </button>
-          <Link className="text-decoration-none" to="/admindashboard">
-            <p className="mt-3">Return to Dashboard</p>
-          </Link>
+          {userRole === "superadmin" ? (
+            <Link className="text-decoration-none" to="/admindashboard">
+              <p className="mt-3">Return to Dashboard</p>
+            </Link>
+          ) : (
+            <Link className="text-decoration-none" to="/admin2dashboard">
+              <p className="mt-3">Return to Dashboard</p>
+            </Link>
+          )}
         </form>
       </main>
     </div>

@@ -3,7 +3,6 @@ import "./ListAdminCourses.css";
 import logo from "../../assets/logo.png";
 import { EditOutlined, DeleteOutlined, LoginOutlined } from "@ant-design/icons";
 
-
 import { Link } from "react-router-dom";
 import { url } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +18,8 @@ const ListAdminCourses = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState({});
   const dispatch = useDispatch();
+
+  const userRole = useSelector((state) => state.login.role);
 
   const adminCourses = useSelector((state) => state.adminCourses.courses);
 
@@ -113,8 +114,17 @@ const ListAdminCourses = () => {
           })}
         </div>
         <div className="text-end pb-5 pr-5 mx-5">
-          <Link className="text-decoration-none" to="/admindashboard">
+          {/* <Link className="text-decoration-none" to="/admin2dashboard">
             <p>Return to Dashboard</p>
+          </Link> */}
+          {console.log("userRole: ", userRole, userRole === "superadmin")}
+          <Link
+            className="text-decoration-none"
+            to={
+              userRole === "superadmin" ? "/admindashboard" : "/admin2dashboard"
+            }
+          >
+            <p className="mt-3">Return to Dashboard</p>
           </Link>
         </div>
       </div>

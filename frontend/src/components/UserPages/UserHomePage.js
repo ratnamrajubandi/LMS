@@ -1,12 +1,13 @@
 import React from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./UserHomePage.css";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 import { LoginOutlined } from "@ant-design/icons";
 
 const UserHomePage = () => {
-  const email = useSelector((state) => state.login.email);
+  // const email = useSelector((state) => state.login.email);
+  const localEmail = localStorage.getItem("Email");
 
   // const jwt = useSelector((state) => state.login.jwt);
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const UserHomePage = () => {
         <h1 className="user-homepage-heading">Welcome To Kona LMS</h1>
         <div className="login-logout">
           <h5 className="text-secondary">
-            Logged in as <span className="text-success fs-6">{email}</span>
+            Logged in as <span className="text-success fs-6">{localEmail}</span>
           </h5>
         </div>
       </div>

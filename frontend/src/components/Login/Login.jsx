@@ -25,7 +25,7 @@ const Login = () => {
   // ------------------------------------------------------------------------
 
   // GETTING EMAIL, PASSWORD, JWT FROM STORE
-  const email = useSelector((state) => state.email);
+  const email = useSelector((state) => state.login.email);
   const password = useSelector((state) => state.password);
   const jwt = useSelector((state) => state.login.jwt);
   const userRole = useSelector((state) => state.login.role);
@@ -49,13 +49,41 @@ const Login = () => {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit && jwt) {
       localStorage.setItem("JWT Token", jwt);
+      localStorage.setItem("Email", email);
 
       const COOKIE_NAME = "testCookie";
+      const COOKIE_NAME2 = "emailCookie";
       document.cookie = `${COOKIE_NAME}=${jwt}`;
+      document.cookie = `${COOKIE_NAME2}=${email}`;
 
-      if (userRole === "admin") {
+      ///////////////////////////
+      // async function fetchUserId() {
+      //   try {
+      //     const response = await fetch('/api/userId', {
+      //       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      //     });
+
+      //     if (!response.ok) {
+      //       throw new Error('Failed to fetch user ID');
+      //     }
+
+      //     const { userId } = await response.json();
+      // console.log(userId);
+
+      //   } catch (error) {
+      //     console.error(error);
+      //   }
+
+      // }
+      // fetchUserId();
+      ////////////////////////////
+
+      if (userRole === "superadmin") {
         // window.cookies.set("cook", jwt);
         return navigate("/admindashboard");
+      } else if  (userRole === "admin") {
+        // window.cookies.set("cook", jwt);
+        return navigate("/admin2dashboard");
       }
       // window.cookies.set("cook", jwt);
       navigate("/userhomepage");
