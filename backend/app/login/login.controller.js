@@ -7,6 +7,10 @@ async function create(req, res) {
       return res.status(400).send("All input is required");
     }
     const user = await login.getUserWithToken(email, password);
+
+    if (!user.verifiedEmail) {
+      return res.status(400).send("Email not verified");
+    }
     if (user) {
       return res.status(200).json(user);
     }

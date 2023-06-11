@@ -60,6 +60,31 @@ async function resetPassword(req, res) {
   return res.status(200).send("successfully reset password");
 }
 
+async function verifyEmail(req, res) {
+  const { id, token } = req.body;
+
+  console.log("id, token in verify email: ", id, token);
+
+  if (!token || !id) {
+    return res.status(400).send("Invalid token or id");
+  }
+
+  const user = await userService.getUserById(id);
+
+  console.log("user in verify email: ", user);
+
+  if (user.verifiedEmail) {
+    return res.status(200).send("Email already verified");
+  }
+
+  if (!(await userService.validateVerficationToken(id, token))) {
+    return res.status(400).send("Invalid token");
+  }
+
+  await userService.updateVerifiedEmail(user._id);
+  return res.status(200).send("Email verified succesfully");
+}
+
 async function toggleUserRole(req, res) {
   console.log("body in toggle user role: ", req.body);
   if (req.body.userId) {
@@ -73,4 +98,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   toggleUserRole,
+  verifyEmail,
 };

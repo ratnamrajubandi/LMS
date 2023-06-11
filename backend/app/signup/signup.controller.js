@@ -17,7 +17,8 @@ async function create(req, res) {
       return res.status(409).send("User Already Exist. Please Login");
     }
 
-    const user = userService.createUser(email, password);
+    const user = await userService.createUser(email, password);
+    await userService.sendEmailVerificationLink(email);
     // return new user
     res.status(201).json(user);
   } catch (err) {

@@ -78,7 +78,41 @@ async function sendPasswordResetLink(email) {
         </body>
       </html>
         `;
+
   utils.sendEmail("ratnamraju22@gmail.com", "Reset Password Link", emailBody);
+}
+
+/////////
+async function sendEmailVerificationLink(email) {
+  const verificationToken = crypto.randomBytes(32).toString("hex");
+  const salt = await bcrypt.genSalt(10);
+  const hashedVerificationToken = await bcrypt.hash(verificationToken, salt);
+  const oldUser = await getUserByEmail(email);
+
+  await User.updateOne(
+    { email },
+    { emailVerificationLink: hashedVerificationToken }
+  );
+  const verificationLink = `http://localhost:3000/emailverification?token=${verificationToken}&user=${oldUser.id}`;
+  const emailBody = `
+        <html>
+        <head> </head>
+        <body>
+          <p>
+            Please click <a href="${verificationLink}">here</a> to verify your Email. If this doesn't
+            work, please copy paste the following link in your browser.
+          </p>
+      
+          <p>${verificationLink}</p>
+        </body>
+      </html>
+        `;
+
+  utils.sendEmail(
+    "ratnamraju22@gmail.com",
+    "Verify Your Email Link",
+    emailBody
+  );
 }
 
 async function resetPassword(id, password) {
@@ -98,7 +132,25 @@ async function resetPassword(id, password) {
 
 async function validateResetToken(id, token) {
   const user = await getUserById(id);
-  return await bcrypt.compare(token, user.resettoken);
+  return bcrypt.compare(token, user.resettoken);
+}
+
+async function updateVerifiedEmail(id) {
+  return await User.updateOne(
+    {
+      _id: id,
+    },
+    {
+      verifiedEmail: true,
+      emailVerificationLink: "",
+    }
+  );
+}
+
+async function validateVerficationToken(id, token) {
+  const user = await getUserById(id);
+  console.log("user: ", user);
+  return  bcrypt.compare(token, user.emailVerificationLink);
 }
 
 async function toggleUserRoleByEmail(email) {
@@ -120,4 +172,7 @@ module.exports = {
   resetPassword,
   validateResetToken,
   toggleUserRoleByEmail,
+  validateVerficationToken,
+  sendEmailVerificationLink,
+  updateVerifiedEmail,
 };
