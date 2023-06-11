@@ -1,0 +1,6 @@
+.verify-background{
+    background-image: url("../../assets/bg5.jpg");
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+}

@@ -1,7 +1,7 @@
 const actions = {
-    FORGOTPASSWORD: "FORGOTPASSWORD",
-    
-  };
-  
-  export default actions;
-  
+  FORGOTPASSWORD: "FORGOTPASSWORD",
+  VERIFY_EMAIL_START: "VERIFY_EMAIL_START",
+  VERIFY_EMAIL: "VERIFY_EMAIL",
+};
+
+export default actions;

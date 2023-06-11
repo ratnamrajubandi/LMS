@@ -17,6 +17,8 @@ import UserHomePage from "./components/UserPages/UserHomePage";
 import UserListAvailableCourses from "./components/UserPages/UserListAvailableCourses";
 import PaymentSuccess from "./components/Payments/PaymentSuccess";
 import AdminGetAllUsers from "./components/AdminDashboard/AdminGetAllUsers";
+import EmailVerified from "./components/Forgotpassword/EmailVerified";
+import SignUpVerify from "./components/SignUp/SignUpVerify"
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} exact={true} />
         <Route path="/home" element={<Home />} />
+        <Route path="/signupverify" element={<SignUpVerify />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/admin2dashboard" element={<Admin2Dashboard />} />
@@ -45,6 +48,7 @@ function App() {
           element={<UserListAvailableCourses />}
         />
         <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+        <Route path="/emailverification" element={<EmailVerified />} />
       </Routes>
     </BrowserRouter>
   );

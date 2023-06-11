@@ -5,6 +5,7 @@ const initialState = {
   password: "",
   responseStatus: "",
   jwt: "",
+  errorMessage: "",
   ////
   // userid:"",
 };
@@ -21,6 +22,7 @@ const loginReducer = (state = initialState, action) => {
         email: action.payload.email,
         password: action.payload.password,
         responseStatus: "",
+        errorMessage: "",
         jwt: action.payload.token,
         role: action.payload.role,
         /////
@@ -29,7 +31,8 @@ const loginReducer = (state = initialState, action) => {
     case actions.LOGIN_ERROR:
       return {
         ...state,
-        responseStatus: action.payload,
+        responseStatus: action.payload.status,
+        errorMessage: action.payload.message,
         jwt: "",
       };
     default:

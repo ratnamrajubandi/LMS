@@ -49,7 +49,7 @@ const SignUp = () => {
 
   useEffect(() => {
     if (responseStatus === 201) {
-      navigate("/home");
+      navigate("/signupverify");
     }
     if (responseStatus === 409) {
       setErrorMessage("User Already Exists");

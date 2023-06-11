@@ -12,7 +12,9 @@ const Login = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
-  const responseStatus = useSelector((state) => state.login.responseStatus);
+  const { responseStatus, errorMessage: loginErrorMessage } = useSelector(
+    (state) => state.login
+  );
 
   //DISPATCHING EMAIL AND PASSWORD FROM UI TO STORE
   const dispatch = useDispatch();
@@ -81,7 +83,7 @@ const Login = () => {
       if (userRole === "superadmin") {
         // window.cookies.set("cook", jwt);
         return navigate("/admindashboard");
-      } else if  (userRole === "admin") {
+      } else if (userRole === "admin") {
         // window.cookies.set("cook", jwt);
         return navigate("/admin2dashboard");
       }
@@ -90,7 +92,8 @@ const Login = () => {
     }
 
     if (responseStatus === 400) {
-      setErrorMessage("Invalid Credentials");
+      console.log("loginErrorMessage: ", loginErrorMessage);
+      setErrorMessage(loginErrorMessage);
     }
   }, [formErrors, isSubmit, jwt, responseStatus]);
 
@@ -129,7 +132,7 @@ const Login = () => {
           <h1 className="h3 mb-3 fw-normal text-secondary">Welcome</h1>
 
           {errorMessage ? (
-            <div className="text-danger">Invalid Credentials !!</div>
+            <div className="text-danger">{loginErrorMessage}</div>
           ) : (
             <p className="text-muted mt-4">
               Log in to Kona LMS to continue to DigitalLync

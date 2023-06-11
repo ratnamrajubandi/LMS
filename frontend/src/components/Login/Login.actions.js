@@ -17,20 +17,25 @@ export function login(email, password) {
       });
 
       if (!res.ok) {
+        const data = await res.text();
+
         dispatch({
           type: actions.LOGIN_ERROR,
-          payload: res.status,
+          payload: {
+            status: res.status,
+            message: data || "",
+          },
         });
         return;
       }
       const data = await res.json();
-      // console.log("data: ", data);
 
       dispatch({
         type: actions.LOGIN,
         payload: data,
       });
     } catch (err) {
+      console.log("err: ", err);
       console.log("err in login: ", err);
     }
   };
